@@ -1,36 +1,38 @@
 package Chapter2.item2;
 
-// 점층적 생성자 패턴 - 확장하기 어렵다!
+// 자바빈즈 패턴 - 일관성이 깨지고, 불변으로 만들 수 없다.
 public class NutritionFacts {
-    private final int servingSize;      // (ml, 1회 제공량)     필수
-    private final int servings;         // (회, 총 n회 제공량)   필수
-    private final int calories;         // (1회 제공량당)        선택
-    private final int fat;              // (mg/1회 제공량)      선택
-    private final int sodium;           // (mg/1회 제공량)      선택
-    private final int carbohydrate;     // (g/1회 제공량)       선택
+    // 매개변수들은 (기본값이 있다면) 기본값으로 초기화된다.
+    private int servingSize   = -1;   //필수; 기본값 없음
+    private int servings      = -1;   //필수; 기본값 없음
+    private int calories      = 0;
+    private int fat           = 0;
+    private int sodium        = 0;
+    private int carbohydrate  = 0;
 
-    public NutritionFacts(int servingSize, int servings) {
-        this(servingSize, servings, 0);
-    }
-
-    public NutritionFacts(int servingSize, int servings, int calories) {
-        this(servingSize, servings, calories, 0);
-    }
-
-    public NutritionFacts(int servingSize, int servings, int calories, int fat) {
-        this(servingSize, servings, calories, fat,0);
-    }
-
-    public NutritionFacts(int servingSize, int servings, int calories, int fat, int sodium) {
-        this(servingSize, servings, calories,fat, sodium, 0);
-    }
-
-    public NutritionFacts(int servingSize, int servings, int calories, int fat, int sodium, int carbohydrate) {
+    public NutritionFacts() {}
+    // 세터 메서드들
+    public void setServingSize(int servingSize) {
         this.servingSize = servingSize;
+    }
+
+    public void setServings(int servings) {
         this.servings = servings;
+    }
+
+    public void setCalories(int calories) {
         this.calories = calories;
+    }
+
+    public void setFat(int fat) {
         this.fat = fat;
+    }
+
+    public void setSodium(int sodium) {
         this.sodium = sodium;
+    }
+
+    public void setCarbohydrate(int carbohydrate) {
         this.carbohydrate = carbohydrate;
     }
 }
