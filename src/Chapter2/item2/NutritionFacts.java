@@ -1,38 +1,66 @@
 package Chapter2.item2;
 
-// 자바빈즈 패턴 - 일관성이 깨지고, 불변으로 만들 수 없다.
+// 빌더 패턴 - 점층적 생성자 패턴과 자바빈즈 패턴의 장점만 취했다.
 public class NutritionFacts {
-    // 매개변수들은 (기본값이 있다면) 기본값으로 초기화된다.
-    private int servingSize   = -1;   //필수; 기본값 없음
-    private int servings      = -1;   //필수; 기본값 없음
-    private int calories      = 0;
-    private int fat           = 0;
-    private int sodium        = 0;
-    private int carbohydrate  = 0;
+    private final int servingSize;
+    private final int servings;
+    private final int calories;
+    private final int fat;
+    private final int sodium;
+    private final int carbohydrate;
 
-    public NutritionFacts() {}
-    // 세터 메서드들
-    public void setServingSize(int servingSize) {
-        this.servingSize = servingSize;
+    public static class Builder{
+        // 필수 매개변수
+        private final int servingSize;
+        private final int servings;
+
+        // 선택 매개변수 - 기본값으로 초기화한다.
+        private int calories;
+        private int fat;
+        private int sodium;
+        private int carbohydrate;
+
+        public Builder(int servingSize, int servings) {
+            this.servingSize = servingSize;
+            this.servings = servings;
+        }
+
+        public Builder calories(int val){
+            calories = val;
+            return this;
+        }
+
+        public Builder fat(int val){
+            fat = val;
+            return this;
+        }
+
+        public Builder sodium(int val){
+            sodium = val;
+            return this;
+        }
+
+        public Builder carbohydrate(int val){
+            carbohydrate = val;
+            return this;
+        }
+
+        public NutritionFacts build(){
+            return new NutritionFacts(this);
+        }
     }
 
-    public void setServings(int servings) {
-        this.servings = servings;
+    private NutritionFacts(Builder builder){
+        servingSize     = builder.servingSize;
+        servings        = builder.servings;
+        calories        = builder.calories;
+        fat             = builder.fat;
+        sodium          = builder.sodium;
+        carbohydrate    = builder.carbohydrate;
     }
 
-    public void setCalories(int calories) {
-        this.calories = calories;
-    }
-
-    public void setFat(int fat) {
-        this.fat = fat;
-    }
-
-    public void setSodium(int sodium) {
-        this.sodium = sodium;
-    }
-
-    public void setCarbohydrate(int carbohydrate) {
-        this.carbohydrate = carbohydrate;
+    public static void main(String[] args) {
+        NutritionFacts cocaCola = new Builder(240, 8).calories(100)
+                .sodium(35).carbohydrate(27).build();
     }
 }
