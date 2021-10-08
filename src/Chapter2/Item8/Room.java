@@ -37,5 +37,4 @@ public class Room implements AutoCloseable{
     public void close(){
         cleanable.clean();
     }
-
 }
