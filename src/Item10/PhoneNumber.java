@@ -1,5 +1,7 @@
 package Item10;
 
+import java.util.Objects;
+
 // 전형적인 equals 메서드의 예
 public final class PhoneNumber {
     private final short areaCode, prefix, lineNum;
@@ -24,5 +26,10 @@ public final class PhoneNumber {
             return false;
         PhoneNumber pn = (PhoneNumber) o;
         return pn.lineNum == lineNum && pn.prefix == prefix && pn.areaCode == areaCode;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(areaCode, prefix, lineNum);
     }
 }
