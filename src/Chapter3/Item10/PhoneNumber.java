@@ -1,4 +1,4 @@
-package Item10;
+package Chapter3.Item10;
 
 import java.util.Objects;
 
