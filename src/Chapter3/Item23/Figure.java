@@ -1,7 +1,7 @@
 package Chapter3.Item23;
 
 public class Figure {
-    enum Shape {RECTANGLE, CIRCLE};
+    enum Shape {RECTANGLE, CIRCLE}
 
     // 태그 필드 - 현재 모양을 나타낸다.
     final Shape shape;
