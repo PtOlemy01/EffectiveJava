@@ -1,4 +1,4 @@
-package Chapter2.Item17;
+package Chapter3.Item17;
 
 public final class Complex {
     private final double re;
